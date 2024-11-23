@@ -5,6 +5,7 @@ body {
     background-color: #f7f8fa;
     color: #333;
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 h1 {
@@ -55,13 +56,42 @@ h1 {
     max-height: 80vh;
 }
 
+/* Page Container */
+.page-container {
+    margin: 20px auto;
+    position: relative;
+    display: block;
+}
+
 /* Canvas (PDF Pages) */
 canvas {
     display: block;
-    margin: 20px auto;
+    margin: 10px auto;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Annotation Layer */
+.annotation-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none; /* Allow annotations to handle their own pointer events */
+    width: 100%;
+    height: 100%;
+}
+
+/* Annotation Links */
+.annotation-layer a {
+    pointer-events: auto; /* Ensure links are clickable */
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.annotation-layer a:hover {
+    text-decoration: underline;
 }
 
 /* Mobile Responsiveness */
@@ -82,20 +112,4 @@ canvas {
     canvas {
         margin: 10px auto;
     }
-}
-/* Links clickable */
-.page-container {
-    margin: 10px auto;
-    position: relative;
-    display: inline-block;
-}
-
-.annotation-layer a {
-    text-decoration: none;
-    color: #007bff;
-    pointer-events: auto; /* Ensure links are clickable */
-}
-
-.annotation-layer a:hover {
-    text-decoration: underline;
 }
