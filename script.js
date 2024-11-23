@@ -29,7 +29,29 @@ const renderPDF = async (file) => {
         pdfViewer.appendChild(canvas);
     }
 };
+    // Render annotations (links and other interactive elements)
+    const annotationLayer = document.createElement('div');
+    annotationLayer.className = 'annotation-layer';
+    annotationLayer.style.position = 'absolute';
+    annotationLayer.style.top = 0;
+    annotationLayer.style.left = 0;
+    annotationLayer.style.width = `${viewport.width}px`;
+    annotationLayer.style.height = `${viewport.height}px`;
+    annotationLayer.style.pointerEvents = 'none';
 
+    const annotations = await page.getAnnotations();
+    pdfjsLib.AnnotationLayer.render({
+        annotations,
+        viewport,
+        div: annotationLayer,
+        page,
+        linkService: new pdfjsLib.SimpleLinkService(),
+    });
+
+    pageContainer.appendChild(annotationLayer);
+    pdfViewer.appendChild(pageContainer);
+}
+};
 // Event Listener for File Input
 fileInput.addEventListener('change', (event) => {
     const file = event.target.files[0];

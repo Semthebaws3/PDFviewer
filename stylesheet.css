@@ -83,3 +83,19 @@ canvas {
         margin: 10px auto;
     }
 }
+/* Links clickable */
+.page-container {
+    margin: 10px auto;
+    position: relative;
+    display: inline-block;
+}
+
+.annotation-layer a {
+    text-decoration: none;
+    color: #007bff;
+    pointer-events: auto; /* Ensure links are clickable */
+}
+
+.annotation-layer a:hover {
+    text-decoration: underline;
+}
