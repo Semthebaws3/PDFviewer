@@ -1,0 +1,85 @@
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f8fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 24px;
+    color: #222;
+}
+
+/* File Input Styling */
+#file-input {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 16px;
+    font-size: 16px;
+    color: #555;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+#file-input:hover {
+    border-color: #007bff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+#file-input:focus {
+    border-color: #0056b3;
+    outline: none;
+    box-shadow: 0 4px 8px rgba(0, 91, 187, 0.4);
+}
+
+/* PDF Viewer Container */
+#pdf-viewer {
+    width: 90%;
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 10px;
+    background: #fff;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 80vh;
+}
+
+/* Canvas (PDF Pages) */
+canvas {
+    display: block;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 20px;
+    }
+
+    #file-input {
+        width: 90%;
+        padding: 10px;
+    }
+
+    #pdf-viewer {
+        padding: 8px;
+    }
+
+    canvas {
+        margin: 10px auto;
+    }
+}
