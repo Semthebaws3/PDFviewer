@@ -1,4 +1,5 @@
 const fileInput = document.getElementById('file-input');
+const uploadForm = document.getElementById('upload-form');
 const pdfViewer = document.getElementById('pdf-viewer');
 
 // Configure PDF.js
@@ -6,9 +7,8 @@ const pdfjsLib = window['pdfjs-dist/build/pdf'];
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
 // Function to render PDF
-const renderPDF = async (file) => {
-    const fileURL = URL.createObjectURL(file);
-    const pdf = await pdfjsLib.getDocument(fileURL).promise;
+const renderPDF = async (url) => {
+    const pdf = await pdfjsLib.getDocument(url).promise;
 
     pdfViewer.innerHTML = ''; // Clear previous content
 
@@ -61,15 +61,16 @@ const renderPDF = async (file) => {
     }
 };
 
-// Event listener for file input
-fileInput.addEventListener('change', (event) => {
-    const file = event.target.files[0];
-    if (file.type === 'application/pdf') {
-        renderPDF(file).catch((error) => {
-            console.error('Error rendering PDF:', error);
-            alert('There was an error rendering the PDF. Please try again.');
-        });
-    } else {
-        alert('Please select a valid PDF file.');
-    }
+// Handle form submission
+uploadForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const formData = new FormData(uploadForm);
+    const response = await fetch('/upload', {
+        method: 'POST',
+        body: formData,
+    });
+    const result = await response.json();
+    const fileUrl = result.fileUrl;
+    renderPDF(fileUrl);
+    alert(`PDF uploaded successfully! Share this link: ${fileUrl}`);
 });
