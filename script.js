@@ -53,7 +53,7 @@ const renderPDF = async (file) => {
             viewport,
             div: annotationLayer,
             page,
-            linkService: new pdfjsLib.SimpleLinkService(),
+            linkService: new pdfjsLib.PDFLinkService(),
         });
 
         pageContainer.appendChild(annotationLayer);
