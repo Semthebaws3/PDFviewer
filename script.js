@@ -65,12 +65,20 @@ const renderPDF = async (url) => {
 uploadForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     const formData = new FormData(uploadForm);
-    const response = await fetch('/upload', {
-        method: 'POST',
-        body: formData,
-    });
-    const result = await response.json();
-    const fileUrl = result.fileUrl;
-    renderPDF(fileUrl);
-    alert(`PDF uploaded successfully! Share this link: ${fileUrl}`);
+    try {
+        const response = await fetch('/upload', {
+            method: 'POST',
+            body: formData,
+        });
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const result = await response.json();
+        const fileUrl = result.fileUrl;
+        renderPDF(fileUrl);
+        alert(`PDF uploaded successfully! Share this link: ${fileUrl}`);
+    } catch (error) {
+        console.error('Error uploading file:', error);
+        alert('There was an error uploading the file. Please try again.');
+    }
 });
