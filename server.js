@@ -1,4 +1,4 @@
-const express = require('express'); // Ensure express is required
+const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
